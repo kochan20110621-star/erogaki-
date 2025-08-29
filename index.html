@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>江呂餓鬼大学｜公式（架空）</title>
+<meta name="description" content="江呂餓鬼大学（架空）公式サイト — 遊び心と実験精神。クソゴミ学部をはじめとする学びの紹介。" />
+<style>
+:root{
+  --bg:#ffffff; --fg:#0f172a; --muted:#475569; --accent:#0a66ff;
+  --glass: rgba(255,255,255,0.7); --line:#e6eefb;
+  --wrap:1100px; --radius:18px; --shadow:0 8px 30px rgba(15,23,42,.08);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family: "Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* Header */
+.hdr{position:sticky;top:0;z-index:60;background:linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.6));backdrop-filter: blur(6px) saturate(120%);border-bottom:1px solid var(--line)}
+.hdr_in{max-width:var(--wrap);margin:0 auto;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800}
+.brand img{height:44px;width:44px;border-radius:999px;box-shadow:var(--shadow);background:#fff;padding:6px}
+.nav{display:none;gap:24px}
+.nav a{font-weight:700;color:var(--muted);padding:8px 0}
+.cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:999px;font-weight:800;box-shadow:0 6px 18px rgba(10,102,255,.16)}
+@media(min-width:860px){.nav{display:flex}}
+
+/* Hero */
+.hero{padding:56px 0 96px;position:relative}
+.hero_in{max-width:var(--wrap);margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.hero_card{background:linear-gradient(180deg,#ffffff 0%, #fbfdff 100%);border-radius:18px;padding:34px;box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden;position:relative}
+.kicker{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.16em;color:var(--accent);background:var(--line);padding:8px 12px;border-radius:999px;margin-bottom:12px}
+.hero h1{font-size:clamp(28px,4.4vw,48px);margin:6px 0 10px;line-height:1.05}
+.hero p{color:var(--muted);margin:0 0 18px;line-height:1.8}
+.hero .cta_group{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;border:1px solid var(--accent);color:var(--accent);padding:10px 16px;border-radius:999px;font-weight:800;background:transparent}
+.btn.primary{background:var(--accent);color:#fff;border-color:transparent}
+.hero_art{display:flex;align-items:center;justify-content:center;gap:12px;flex-direction:column}
+
+/* Crest / fallback */
+.crest_wrap{width:160px;height:160px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#fff,#f7fbff);box-shadow:0 12px 30px rgba(10,102,255,.08);border:1px solid var(--line)}
+.crest_img{width:120px;height:120px;border-radius:50%;object-fit:contain;padding:6px;background:#fff}
+.crest_fallback{font-weight:900;color:var(--accent);font-size:14px;letter-spacing:.06em}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(10px);animation:fadeInUp .7s ease forwards}
+@keyframes fadeInUp{to{opacity:1;transform:none}}
+.float{animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+/* Sections */
+section{padding:64px 0;border-top:1px solid var(--line)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.t-eyebrow{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:.12em;margin:0 0 8px}
+.t-h2{font-size:clamp(20px,3.2vw,34px);margin:0 0 12px}
+.t-sub{color:var(--muted);margin:0 0 20px}
+
+/* Cards grid */
+.cards{display:grid;gap:18px}
+@media(min-width:800px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:#fff;border-radius:14px;padding:18px;border:1px solid var(--line);box-shadow:0 6px 18px rgba(2,6,23,.04)}
+.card h3{margin:6px 0 8px;font-size:18px}
+.card p{margin:0;color:var(--muted)}
+
+/* Timeline */
+.timeline{border-left:3px solid var(--line);padding-left:18px}
+.tl{margin:0 0 16px}
+.tl .year{font-weight:800;color:var(--accent)}
+
+/* News list (lots of items for "ボリューム感") */
+.news_list{display:grid;gap:12px}
+.news_item{padding:12px;border-radius:10px;border:1px dashed var(--line);background:linear-gradient(180deg,#fff,#fbfdff);display:flex;align-items:flex-start;gap:12px}
+.news_item .meta{min-width:88px;font-size:13px;color:var(--muted);font-weight:700}
+.news_item .title{font-weight:800}
+
+/* Footer */
+.ftr{border-top:1px solid var(--line);padding:40px 0;color:#64748b;text-align:center}
+.footer_grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:var(--wrap);margin:0 auto;padding:0 20px}
+
+/* small responsive tweaks */
+@media(max-width:980px){
+  .hero_in{grid-template-columns:1fr;gap:20px;padding:0 16px}
+  .nav{display:none}
+  header .nav{display:none}
+  .footer_grid{grid-template-columns:1fr}
+}
+
+/* Fancy micro-interactions */
+.card:hover{transform:translateY(-6px);transition:transform .32s cubic-bezier(.2,.9,.27,1)}
+a.btn:active{transform:translateY(2px)}
+</style>
+</head>
+<body>
+  <header class="hdr">
+    <div class="hdr_in">
+      <a href="#top" class="brand" aria-label="江呂餓鬼大学トップ">
+        <img src="/mnt/data/crest.png" alt="江呂餓鬼大学 校章" onerror="this.style.display='none';document.querySelector('.brand').insertAdjacentHTML('beforeend','<span style=&quot;font-weight:800;color:var(--accent);margin-left:8px;&quot;>江呂餓鬼大学</span>');" />
+        <span style="font-weight:900;letter-spacing:.02em">江呂餓鬼大学</span>
+      </a>
+
+      <nav class="nav" aria-label="主要ナビ">
+        <a href="#about">大学概要</a>
+        <a href="#faculties">学部紹介</a>
+        <a href="#campus">キャンパス</a>
+        <a href="#admission">入試情報</a>
+      </nav>
+
+      <a class="cta" href="#admission">資料請求</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="hero">
+    <div class="hero_in wrap">
+      <div class="hero_card fade-in" style="animation-delay:.05s">
+        <div class="kicker">WELCOME</div>
+        <h1>江呂餓鬼大学 ― クソゴミ学部を擁する架空の大学</h1>
+        <p>「遊び心を極め、未来を切り拓く。」 学問と戯れの間にある新しい学びを模索する場。実験精神とユーモアを大切にする学生が集います。</p>
+        <div class="cta_group">
+          <a class="btn primary" href="#faculties">学部を見る</a>
+          <a class="btn" href="#news">ニュース一覧</a>
+        </div>
+
+        <div style="margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;">
+          <div style="background:linear-gradient(90deg,#f0f7ff,#fff);padding:10px;border-radius:10px;border:1px solid var(--line);font-weight:700;color:var(--muted)">偏奇値採用</div>
+          <div style="background:linear-gradient(90deg,#fff7f3,#fff);padding:10px;border-radius:10px;border:1px solid var(--line);font-weight:700;color:var(--muted)">面白さ重視</div>
+        </div>
+      </div>
+
+      <div class="hero_art fade-in" style="animation-delay:.15s">
+        <div class="crest_wrap float">
+          <img class="crest_img" src="/mnt/data/crest.png" alt="校章" onerror="this.style.display='none';this.parentNode.insertAdjacentHTML('beforeend','<div class=&quot;crest_fallback&quot;>江呂餓鬼大学</div>');" />
+        </div>
+        <div style="max-width:320px;text-align:center;color:var(--muted);font-size:14px">
+          <strong>創立：</strong>2024年<br>
+          <strong>モットー：</strong>知と笑いのハイブリッド
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <p class="t-eyebrow">ABOUT</p>
+      <h2 class="t-h2">大学概要</h2>
+      <p class="t-sub">江呂餓鬼大学は、ユーモアと実験精神を教育の中心に据えた強靭無敵の大学です。以下は当大学の理念と沿革、教育方針などをまとめた紹介です。</p>
+
+      <div style="display:grid;gap:18px">
+        <div class="card fade-in" style="animation-delay:.05s">
+          <h3>理念</h3>
+          <p>遊びと学びを分けない。失敗を称賛し、奇抜な発想をカリキュラムへ取り込むことで、既成概念を越える人材を育てます。</p>
+        </div>
+
+        <div class="card fade-in" style="animation-delay:.10s">
+          <h3>沿革（架空）</h3>
+          <div class="timeline">
+            <p class="tl"><span class="year">2024年</span> 江呂餓鬼大学創立。</p>
+            <p class="tl"><span class="year">2024年</span> クソゴミ学部 設置（世界初・自称）。</p>
+            <p class="tl"><span class="year">2025年</span> 一部生徒が犯罪を犯す</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACULTIES -->
+  <section id="faculties">
+    <div class="wrap">
+      <p class="t-eyebrow">FACULTIES</p>
+      <h2 class="t-h2">学部紹介</h2>
+      <p class="t-sub">※ ロゴ以外の画像は最小限にし、主にタイポグラフィとアニメーションで魅せます。</p>
+
+      <div class="cards">
+        <article class="card fade-in" style="animation-delay:.06s">
+          <span style="display:inline-block;background:#eef6ff;color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px">学科</span>
+          <h3>ガチャ学科</h3>
+          <p>確率設計、行動経済学、UI/UX心理学を横断。架空タイトルを題材にイベント設計を学ぶ。</p>
+        </article>
+
+        <article class="card fade-in" style="animation-delay:.09s">
+          <span style="display:inline-block;background:#fff0f6;color:#ff4d6d;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px">学科</span>
+          <h3>配信学科</h3>
+          <p>コミュニケーション設計、モデレーション、人前表現を体系化。コメントが0でも笑いを取る技法を伝授。</p>
+        </article>
+
+        <article class="card fade-in" style="animation-delay:.12s">
+          <span style="display:inline-block;background:#f7fff0;color:#2f9e44;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px">学科</span>
+          <h3>無駄発明学科</h3>
+          <p>役に立たないが愛されるプロダクトを試作。評価は爆笑係数と現場再現性で決定。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMPUS -->
+  <section id="campus">
+    <div class="wrap">
+      <p class="t-eyebrow">CAMPUS LIFE</p>
+      <h2 class="t-h2">キャンパスライフ（架空）</h2>
+      <p class="t-sub">学生の活動、部活、イベントなどを紹介します。すべて架空ですが想像の翼を広げてください。</p>
+
+      <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+        <div class="card fade-in" style="animation-delay:.07s">
+          <h3>部活動</h3>
+          <p>eスポーツ部、動画編集部、発明工作部、校章を愛でる会（非公認）など多彩。</p>
+        </div>
+        <div class="card fade-in" style="animation-delay:.08s">
+          <h3>イベント</h3>
+          <p>年2回の「無駄カンファレンス」を開催。学生による発表と観客参加型デモが名物。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMISSION -->
+  <section id="admission">
+    <div class="wrap">
+      <p class="t-eyebrow">ADMISSION</p>
+      <h2 class="t-h2">入試情報（架空）</h2>
+      <p class="t-sub">偏差値ではなく偏奇値を採用。面白さや場の空気を読む力を重視します（もちろん架空）。</p>
+
+      <div class="cards" style="grid-template-columns:1.2fr .8fr">
+        <article class="card fade-in" style="animation-delay:.06s">
+          <h3>選抜方法：ネタ提出方式</h3>
+          <p>動画・企画書・ネタテキストなどで一次選考。二次は面談</p>
+        </article>
+        <article class="card fade-in" style="animation-delay:.09s">
+          <h3>出願要項</h3>
+          <ul style="margin:6px 0 0 18px;color:var(--muted);line-height:1.8">
+            <li>提出物：あなたの最高の一発ネタ（いずれか）</li>
+            <li>審査：一次（書類）→二次（面談）</li>
+            <li>学費：通貨単位も未定</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS (大量ダミーで「量感」を出す) -->
+  <section id="news">
+    <div class="wrap">
+      <p class="t-eyebrow">NEWS</p>
+      <h2 class="t-h2">最新ニュース</h2>
+      <p class="t-sub">学内の出来事や学生プロジェクトの紹介 — ニュースを多数表示してサイトの厚みを出しています。</p>
+
+      <div class="news_list" aria-live="polite">
+        <!-- ここからダミー記事を大量に並べる（実際のサイトではテンプレートで生成） -->
+        <div class="news_item fade-in" style="animation-delay:.05s">
+          <div class="meta">2025-08-29</div>
+          <div>
+            <div class="title">無駄発明コンテスト、今年も熱狂の渦</div>
+            <div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">学生チームが開発した「自動お辞儀靴」が話題に。笑いと感動のプレゼンテーションが行われました。</div>
+          </div>
+        </div>
+
+        <div class="news_item fade-in" style="animation-delay:.07s">
+          <div class="meta">2025-08-15</div>
+          <div>
+            <div class="title">配信学科 合宿レポート公開</div>
+            <div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">視聴者コミュニティ設計の実践ワークショップを実施。模擬配信で学びを深めました。</div>
+          </div>
+        </div>
+
+        <!-- More dummy items to bulk up content -->
+        <div class="news_item fade-in" style="animation-delay:.09s">
+          <div class="meta">2025-07-30</div>
+          <div>
+            <div class="title">ガチャ学科 学内展示「確率の美学」</div>
+            <div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">学生制作の確率アートが学内で展示され、来場者の投票で最優秀作が決まりました。</div>
+          </div>
+        </div>
+
+        <div class="news_item fade-in" style="animation-delay:.11s">
+          <div class="meta">2025-07-12</div>
+          <div>
+            <div class="title">学生発アーカイブ：無駄カンファレンス2025</div>
+            <div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">全発表をオンラインアーカイブとしてこうまい。振り返り用のノートも配布。</div>
+          </div>
+        </div>
+
+        <!-- 冗長に見せるため複数の類似ダミー -->
+        <div class="news_item fade-in" style="animation-delay:.13s">
+          <div class="meta">2025-06-20</div>
+          <div>
+            <div class="title">地域連携プロジェクト「ちんこおこし×無駄発明」</div>
+            <div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">地方の祭りで学生考案のパフォーマンスを実施。地域と学生の交流が深まりました。</div>
+          </div>
+        </div>
+
+        <div class="news_item fade-in" style="animation-delay:.15s">
+          <div class="meta">2025-05-10</div>
+          <div>
+            <div class="title">国際交流：架空大学とオンラインシンポジウム</div>
+            <div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">海外の同趣旨組織とテーマ別ディスカッションを実施。多文化の観点を養う機会となりました。</div>
+          </div>
+        </div>
+
+        <!-- さらに量感を出すため短い項目を多数 -->
+        <!-- Repeat pattern to provide weight: in practice template-generated -->
+        <div class="news_item fade-in" style="animation-delay:.17s"><div class="meta">2025-04-01</div><div><div class="title">春の学園祭開催</div><div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">模擬店・ライブ・無駄発明展示が多数出展。</div></div></div>
+        <div class="news_item fade-in" style="animation-delay:.19s"><div class="meta">2025-03-12</div><div><div class="title">卒業展示：最後の無駄プロジェクト</div><div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">最終課題として「役に立たない発明」を制作。</div></div></div>
+        <div class="news_item fade-in" style="animation-delay:.21s"><div class="meta">2025-02-28</div><div><div class="title">学生インタビュー：配信で生きる</div><div class="desc" style="color:var(--muted);font-size:14px;margin-top:6px">現役学生が配信学の学びを語る（架空）。</div></div></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS / CONTACT -->
+  <section id="access">
+    <div class="wrap">
+      <p class="t-eyebrow">ACCESS</p>
+      <h2 class="t-h2">アクセス</h2>
+      <p class="t-sub">キャンパスの所在地とアクセスガイド</p>
+
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start">
+        <div class="card fade-in" style="animation-delay:.06s">
+          <h3>所在地</h3>
+          <p>〒123-4567 架空県江呂市学園町1-2-3</p>
+          <h3 style="margin-top:12px">交通案内</h3>
+          <p>最寄り駅：学園前駅（徒歩10分）／バス利用可。キャンパスマップは案内所で配布（架空）。</p>
+        </div>
+
+        <div class="card fade-in" style="animation-delay:.09s">
+          <h3>お問い合わせ（架空）</h3>
+          <p>入試相談：admission@erogaki.example.jp<br>代表：03-1234-5678</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="ftr">
+    <div class="footer_grid">
+      <div style="text-align:left">
+        <strong>江呂餓鬼大学</strong>
+        <p style="color:var(--muted);margin-top:8px">このサイトは架空の内容です。実在の大学、団体、人物とは関係ありません。</p>
+      </div>
+      <div style="text-align:right">
+        <p style="color:var(--muted)">© 20XX 江呂餓鬼大学</p>
+        <p style="color:var(--muted);font-size:13px;margin-top:6px">サイトポリシー | プライバシー | 利用規約</p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+// シンプルなスクロールリビール（IntersectionObserver）
+(function(){
+  const io = new IntersectionObserver((entries)=> {
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('inview');
+        e.target.style.opacity = 1;
+        e.target.style.transform = 'none';
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12});
+
+  document.querySelectorAll('.fade-in').forEach(el=>{
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(10px)';
+    io.observe(el);
+  });
+})();
+
+// トップへスムーススクロール（任意のポリフィル）
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', function(e){
+    const href = this.getAttribute('href');
+    if(href.length>1){
+      e.preventDefault();
+      const el = document.querySelector(href);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+});
+</script>
+</body>
+</html>
